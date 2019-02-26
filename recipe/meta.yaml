@@ -63,6 +63,7 @@ outputs:
 
         - if not exist %LIBRARY_INC%\\apr.h             exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\libapr-1.dll      exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\libapr-1.lib      exit 1  # [win]
 
         - test -f ${PREFIX}/include/apr-1/apr.h                 # [unix]
         - test -f ${PREFIX}/lib/libapr-1${SHLIB_EXT}            # [unix]
@@ -88,6 +89,7 @@ outputs:
 
         - if not exist %LIBRARY_INC%\\apu.h             exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\libaprutil-1.dll  exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\libaprutil-1.lib  exit 1  # [win]
 
         - test -f ${PREFIX}/include/apr-1/apu.h                 # [unix]
         - test -f ${PREFIX}/lib/libaprutil-1${SHLIB_EXT}        # [unix]
@@ -108,6 +110,7 @@ outputs:
     test:
       commands:
         - if not exist %LIBRARY_BIN%\\libapriconv-1.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\libapriconv-1.lib exit 1  # [win]
         - test -f ${PREFIX}/lib/libapriconv-1${SHLIB_EXT}       # [unix]
 
 about:
