@@ -10,12 +10,6 @@ SET XML_PARSER=expat
 
 SET BUILD_MODE=Release
 
-IF "%ARCH%"=="32" (
-    SET PLATFORM=Win32
-) ELSE (
-    SET PLATFORM=x64
-)
-
 :: Nasty hack to force the newer MSBuild from .NET is still used for the older
 :: Visual Studio build. Without this an older MSBuild will be picked up by accident on
 :: AppVeyor after running `vcvars32.bat`, which fails to process our solution files.
@@ -44,7 +38,7 @@ IF "%VS_YEAR%"=="2008" (
 :: so everything we need is built.
 msbuild apr-util\aprutil.sln ^
         /p:Configuration=%BUILD_MODE% ^
-        /p:Platform=%PLATFORM% ^
+        /p:Platform=x64 ^
         %ENVOPT% ^
         /t:libaprutil
 
@@ -52,7 +46,7 @@ IF ERRORLEVEL 1 (ECHO Failed to build APR shared library & EXIT /b 1)
 
 msbuild apr-util\aprutil.sln ^
         /p:Configuration=%BUILD_MODE% ^
-        /p:Platform=%PLATFORM% ^
+        /p:Platform=x64 ^
         %ENVOPT% ^
         /t:aprutil
 
