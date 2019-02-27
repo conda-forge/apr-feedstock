@@ -40,16 +40,6 @@ IF "%VS_YEAR%"=="2008" (
     SET "ENVOPT=/p:UseEnv=true"
 )
 
-:: APR creates 32 bit builds in the "Debug" and "Release" directories
-:: but 64 bit builds in the "x64\Debug" or "x64\Release" directories.
-SET SHARED_LIBDIR=%BUILD_MODE%
-IF %PLATFORM% == x64 SET SHARED_LIBDIR=x64\%SHARED_LIBDIR%
-
-SET STATIC_LIBDIR=LibR
-IF %PLATFORM% == x64 SET STATIC_LIBDIR=x64\%STATIC_LIBDIR%
-
-MKDIR %LIBRARY_PREFIX%\LibR
-
 :: The target 'aprutil' depends on apr and apr-iconv
 :: so everything we need is built.
 msbuild apr-util\aprutil.sln ^
