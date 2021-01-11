@@ -20,13 +20,14 @@ source:
   - path: cmake/  # [win]
 
 build:
-  number: 2
+  number: 3
   ignore_run_exports:                                           # [win]
     - expat                                                     # [win]
   skip: true  # [win and vc<14]
 
 requirements:
   build:
+    - gnuconfig                                                 # [unix]
     - {{ compiler('c') }}
     - cmake                                                     # [win]
     - ninja                                                     # [win]
@@ -47,6 +48,7 @@ outputs:
         - {{ pin_subpackage('libapr', max_pin='x') }}
     requirements:
       build:
+        - gnuconfig                                             # [unix]
         - {{ compiler('c') }}
         - make                                                  # [unix]
         - cmake                                                 # [win]
@@ -72,6 +74,7 @@ outputs:
         - {{ pin_subpackage('libaprutil', max_pin='x') }}
     requirements:
       build:
+        - gnuconfig                                             # [unix]
         - {{ compiler('c') }}
         - make                                                  # [unix]
         - cmake                                                 # [win]
@@ -100,6 +103,7 @@ outputs:
         - {{ pin_subpackage('libapriconv', max_pin='x') }}
     requirements:
       build:
+        - gnuconfig                                             # [unix]
         - {{ compiler('c') }}
         - make                                                  # [unix]
         - cmake                                                 # [win]

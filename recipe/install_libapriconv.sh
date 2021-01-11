@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd "${SRC_DIR}/apr-iconv"
-./configure --prefix="${PREFIX}" --host="${HOST}" --with-apr="${PREFIX}"
+cp $BUILD_PREFIX/share/gnuconfig/config.* build
+./configure --prefix="${PREFIX}" --with-apr="${PREFIX}"
 make
 make install
