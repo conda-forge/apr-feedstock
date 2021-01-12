@@ -23,7 +23,6 @@ build:
   number: 3
   ignore_run_exports:                                           # [win]
     - expat                                                     # [win]
-  skip: true  # [win and vc<14]
 
 requirements:
   build:
@@ -31,12 +30,6 @@ requirements:
     - {{ compiler('c') }}
     - cmake                                                     # [win]
     - ninja                                                     # [win]
-  host:
-    - expat                                                     # [win]
-  run:
-    - libapr
-    - libaprutil
-    - libapriconv
 
 outputs:
   - name: libapr
@@ -81,8 +74,11 @@ outputs:
         - ninja                                                 # [win]
       host:
         - expat
-        - libapr
-        - libapriconv
+        - {{ pin_subpackage('libapr', exact=True) }}
+        - {{ pin_subpackage('libapriconv', exact=True) }}
+      run:
+        - {{ pin_subpackage('libapr', exact=True) }}
+        - {{ pin_subpackage('libapriconv', exact=True) }}
     script: install_libaprutil.sh                               # [unix]
     script: install_libaprutil.bat                              # [win]
     test:
@@ -109,7 +105,9 @@ outputs:
         - cmake                                                 # [win]
         - ninja                                                 # [win]
       host:
-        - libapr
+        - {{ pin_subpackage('libapr', exact=True) }}
+      run:
+        - {{ pin_subpackage('libapr', exact=True) }}
     script: install_libapriconv.sh                              # [unix]
     script: install_libapriconv.bat                             # [win]
     test:
