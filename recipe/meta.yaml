@@ -93,6 +93,7 @@ outputs:
         - expat
         - libapr
         - libapriconv
+        - libxcrypt  # [linux]
     script: install_libaprutil.sh                               # [unix]
     script: install_libaprutil.bat                              # [win]
     test:
