@@ -25,7 +25,7 @@ source:
   - path: cmake/  # [win]
 
 build:
-  number: 5
+  number: 6
   ignore_run_exports:                                           # [win]
     - expat                                                     # [win]
   skip: true  # [win and vc<14]
