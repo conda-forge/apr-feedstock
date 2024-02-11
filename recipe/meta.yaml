@@ -1,7 +1,7 @@
 {% set apr_ver = "1.7.0" %}
 {% set apu_ver = "1.6.1" %}
 {% set api_ver = "1.2.2" %}
-{% set mirror = "http://www-us.apache.org/dist/" %}
+{% set mirror = "https://archive.apache.org/dist" %}
 
 package:
   name: apr
