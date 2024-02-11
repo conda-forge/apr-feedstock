@@ -60,7 +60,7 @@ outputs:
         - cmake                                                 # [win]
         - ninja                                                 # [win]
         - libtool  # [not win]
-        - autoconf  # [unix]
+        - autoconf <2.70  # [unix]
         - automake  # [unix]
         - gettext  # [unix]
       host:
