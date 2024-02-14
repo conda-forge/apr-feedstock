@@ -1,7 +1,7 @@
 {% set apr_ver = "1.7.0" %}
 {% set apu_ver = "1.6.1" %}
 {% set api_ver = "1.2.2" %}
-{% set mirror = "http://www-us.apache.org/dist/" %}
+{% set mirror = "https://archive.apache.org/dist" %}
 
 package:
   name: apr
@@ -25,7 +25,7 @@ source:
   - path: cmake/  # [win]
 
 build:
-  number: 5
+  number: 6
   ignore_run_exports:                                           # [win]
     - expat                                                     # [win]
   skip: true  # [win and vc<14]
@@ -60,7 +60,7 @@ outputs:
         - cmake                                                 # [win]
         - ninja                                                 # [win]
         - libtool  # [not win]
-        - autoconf  # [unix]
+        - autoconf <2.70  # [unix]
         - automake  # [unix]
         - gettext  # [unix]
       host:
@@ -93,6 +93,7 @@ outputs:
         - expat
         - libapr
         - libapriconv
+        - libxcrypt  # [linux]
     script: install_libaprutil.sh                               # [unix]
     script: install_libaprutil.bat                              # [win]
     test:
@@ -150,3 +151,5 @@ extra:
     - mingwandroid
     - nehaljwani
     - seanyen
+    - erykoff
+    - mwittgen
