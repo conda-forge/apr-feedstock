@@ -1,5 +1,5 @@
-{% set apr_ver = "1.7.0" %}
-{% set apu_ver = "1.6.1" %}
+{% set apr_ver = "1.7.6" %}
+{% set apu_ver = "1.6.3" %}
 {% set api_ver = "1.2.2" %}
 {% set mirror = "https://archive.apache.org/dist" %}
 
@@ -10,22 +10,20 @@ package:
 source:
   - url: {{ mirror }}/apr/apr-{{ apr_ver }}.tar.gz
     folder: apr
-    sha256: 48e9dbf45ae3fdc7b491259ffb6ccf7d63049ffacbc1c0977cced095e4c2d5a2
+    sha256: 6a10e7f7430510600af25fabf466e1df61aaae910bf1dc5d10c44a4433ccc81d
     patches:
       - patches/osx-libapr-darwin20-hints.patch
-      # backport of commit 866e1df from upstream
-      - patches/cross-compile-apr-866e1df.patch
       - patches/cross-compile-osx-arm64-strerror.patch  # [osx and build_platform != target_platform]
   - url: {{ mirror }}/apr/apr-util-{{ apu_ver }}.tar.gz
     folder: apr-util
-    sha256: b65e40713da57d004123b6319828be7f1273fbc6490e145874ee1177e112c459
+    sha256: 2b74d8932703826862ca305b094eef2983c27b39d5c9414442e9976a9acf1983
   - url: {{ mirror }}/apr/apr-iconv-{{ api_ver }}.tar.gz
     folder: apr-iconv
     sha256: ce94c7722ede927ce1e5a368675ace17d96d60ff9b8918df216ee5c1298c6a5e
   - path: cmake/  # [win]
 
 build:
-  number: 6
+  number: 0
   ignore_run_exports:                                           # [win]
     - expat                                                     # [win]
   skip: true  # [win and vc<14]
@@ -110,6 +108,8 @@ outputs:
   - name: libapriconv
     version: {{ api_ver }}
     build:
+      # apr-iconv version unchanged, keep incrementing build number
+      number: 7
       run_exports:
         - {{ pin_subpackage('libapriconv', max_pin='x') }}
     requirements:
