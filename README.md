@@ -9,14 +9,13 @@ Package license: Apache-2.0
 
 Summary: Maintains a consistent API with predictable behaviour
 
-Development: https://svn.apache.org/viewvc/apr
+Development: https://github.com/apache/apr
 
 Documentation: https://apr.apache.org/docs/apr/1.6/index.html
 
 Apache Portable Run-time libraries have been designed to provide a common
-interface to low level routines across any platform.The original goal of APR
+interface to low level routines across any platform. The original goal of APR
 was to combine all code in Apache to one common code base.
-
 
 Current build status
 ====================
