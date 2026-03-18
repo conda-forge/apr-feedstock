@@ -1,0 +1,203 @@
+context:
+  apr_ver: "1.7.6"
+  apu_ver: "1.6.3"
+  api_ver: "1.2.2"
+  mirror: https://archive.apache.org/dist
+
+recipe:
+  name: apr-split
+  version: ${{ apr_ver }}
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: libapr
+      version: ${{ apr_ver }}
+    source:
+      url: ${{ mirror }}/apr/apr-${{ apr_ver }}.tar.gz
+      sha256: 6a10e7f7430510600af25fabf466e1df61aaae910bf1dc5d10c44a4433ccc81d
+      patches:
+        - patches/osx-libapr-darwin20-hints.patch
+        - if: osx and build_platform != target_platform
+          then:
+            - patches/cross-compile-osx-arm64-strerror.patch
+    build:
+      script:
+        - if: unix
+          then: install_libapr.sh
+        - if: win
+          then: install_libapr.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: unix
+          then:
+            - make
+            - libtool
+            - autoconf <2.70
+            - automake
+            - gettext
+        - if: win
+          then:
+            - cmake
+            - ninja
+      run_exports:
+        # https://abi-laboratory.pro/tracker/timeline/apr/
+        # This is only on the basis of libapr.so
+        - ${{ pin_subpackage('libapr', upper_bound='x') }}
+
+    tests:
+      - package_contents:
+          include:
+            - apr-1/apr.h
+          lib:
+            - apr-1
+      - if: unix
+        then:
+          script:
+            - apr-1-config --help
+      # - if: win
+      #   then:
+      #     script:
+      #       - if not exist %LIBRARY_INC%\\apr.h exit 1
+      #       - if not exist %LIBRARY_BIN%\\libapr-1.dll exit 1
+      #       - if not exist %LIBRARY_LIB%\\libapr-1.lib exit 1
+
+  - package:
+      name: libapriconv
+      version: ${{ api_ver }}
+    source:
+      - url: ${{ mirror }}/apr/apr-iconv-${{ api_ver }}.tar.gz
+        sha256: ce94c7722ede927ce1e5a368675ace17d96d60ff9b8918df216ee5c1298c6a5e
+      - if: win
+        then:
+          - path: cmake/
+    build:
+      # apr-iconv version unchanged, keep incrementing build number
+      number: 7
+      script:
+        - if: unix
+          then: install_libapriconv.sh
+        - if: win
+          then: install_libapriconv.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: unix
+          then:
+            - make
+            - libtool
+        - if: win
+          then:
+            - cmake
+            - ninja
+      host:
+        - ${{ pin_subpackage('libapr', exact=True) }}
+      run_exports:
+        - ${{ pin_subpackage('libapriconv', upper_bound='x') }}
+
+    tests:
+      - package_contents:
+          include:
+            - apr-1/apr_iconv.h
+          lib:
+            - apriconv-1
+
+      # - if: win
+      #   then:
+      #     script:
+      #       - if not exist %LIBRARY_INC%\\apr_iconv.h exit 1
+      #       - if not exist %LIBRARY_BIN%\\libapriconv-1.dll exit 1
+      #       - if not exist %LIBRARY_LIB%\\libapriconv-1.lib exit 1
+      #       - if not exist %LIBRARY_BIN%\\iconv\\utf-8.so exit 1
+
+  - package:
+      name: libaprutil
+      version: ${{ apu_ver }}
+    source:
+      url: ${{ mirror }}/apr/apr-util-${{ apu_ver }}.tar.gz
+      sha256: 2b74d8932703826862ca305b094eef2983c27b39d5c9414442e9976a9acf1983
+    build:
+      script:
+        - if: unix
+          then: install_libaprutil.sh
+        - if: win
+          then: install_libaprutil.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: unix
+          then:
+            - make
+            - libtool
+        - if: win
+          then:
+            - cmake
+            - ninja
+      host:
+        - expat
+        - ${{ pin_subpackage('libapr', exact=True) }}
+        - ${{ pin_subpackage('libapriconv', exact=True) }}
+        - if: linux
+          then:
+            - libxcrypt
+      run_exports:
+        - ${{ pin_subpackage('libaprutil', upper_bound='x') }}
+
+    tests:
+      - package_contents:
+          include:
+            - apr-1/apu.h
+          lib:
+            - aprutil-1
+
+      - if: unix
+        then:
+          script:
+            - apu-1-config --help
+      - if: win
+        then:
+          script:
+            - if not exist %LIBRARY_INC%\\apu.h exit 1
+            - if not exist %LIBRARY_BIN%\\libaprutil-1.dll exit 1
+            - if not exist %LIBRARY_LIB%\\libaprutil-1.lib exit 1
+
+  - package:
+      name: apr
+      version: ${{ apr_ver }}
+    requirements:
+      run:
+        - ${{ pin_subpackage('libapr', exact=True) }}
+        - ${{ pin_subpackage('libaprutil', exact=True) }}
+        - ${{ pin_subpackage('libapriconv', exact=True) }}
+    tests:
+      - script:
+          - echo "apr meta-package"
+    about:
+      license_file: []
+
+about:
+  homepage: http://apr.apache.org/
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Maintains a consistent API with predictable behaviour
+  description: |
+    Apache Portable Run-time libraries have been designed to provide a common
+    interface to low level routines across any platform. The original goal of APR
+    was to combine all code in Apache to one common code base.
+  documentation: https://apr.apache.org/docs/apr/1.6/index.html
+  repository: https://github.com/apache/apr
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - mingwandroid
+    - nehaljwani
+    - seanyen
+    - erykoff
+    - mwittgen
