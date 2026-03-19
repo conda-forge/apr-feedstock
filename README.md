@@ -3,6 +3,61 @@ About apr-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/apr-feedstock/blob/main/LICENSE.txt)
 
+
+About apr
+---------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
+
+About libapr
+------------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
+
+About libapriconv
+-----------------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
+
+About libaprutil
+----------------
+
 Home: http://apr.apache.org/
 
 Package license: Apache-2.0
@@ -46,13 +101,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6273&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/apr-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6273&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/apr-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
