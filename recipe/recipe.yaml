@@ -37,7 +37,7 @@ outputs:
           then:
             - make
             - libtool
-            - autoconf <2.70
+            - autoconf
             - automake
             - gettext
         - if: win

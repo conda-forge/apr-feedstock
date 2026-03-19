@@ -29,5 +29,7 @@ make install
 # to the compiler in $BUILD_PREFIX (e.g. .../build_env/bin/x86_64-conda-linux-gnu-cc).
 # That absolute path won't exist for downstream packages or end users. Strip the
 # directory so libtool uses just the compiler name, which will be found on $PATH.
-sed -i.bak "s|${BUILD_PREFIX}/bin/||g" "${PREFIX}/build-1/libtool"
-rm -f "${PREFIX}/build-1/libtool.bak"
+# Strip hardcoded BUILD_PREFIX paths from libtool so downstream packages
+# find the compiler on $PATH instead of an absolute build-env path.
+sed "s|${BUILD_PREFIX}/bin/||g" "${PREFIX}/build-1/libtool" > "${PREFIX}/build-1/libtool.tmp"
+mv "${PREFIX}/build-1/libtool.tmp" "${PREFIX}/build-1/libtool"
