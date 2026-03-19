@@ -10,7 +10,7 @@ cp $BUILD_PREFIX/share/libtool/build-aux/config.* ./build
 make
 make install
 
-# Strip hardcoded BUILD_PREFIX paths from libtool so downstream packages
-# find the compiler on $PATH instead of an absolute build-env path.
-sed "s|${BUILD_PREFIX}/bin/||g" "${PREFIX}/build-1/libtool" > "${PREFIX}/build-1/libtool.tmp"
+# Strip hardcoded absolute paths to conda build-env compilers in the installed
+# libtool, so downstream outputs/packages find them on $PATH instead.
+sed "s|[^ ]*/build_env/bin/||g" "${PREFIX}/build-1/libtool" > "${PREFIX}/build-1/libtool.tmp"
 mv "${PREFIX}/build-1/libtool.tmp" "${PREFIX}/build-1/libtool"

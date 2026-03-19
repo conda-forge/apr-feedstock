@@ -44,19 +44,13 @@ outputs:
     tests:
       - package_contents:
           include:
-            - apr-1/apr.h
+            - "**/apr.h"
           lib:
             - apr-1
       - if: unix
         then:
           script:
             - apr-1-config --help
-      # - if: win
-      #   then:
-      #     script:
-      #       - if not exist %LIBRARY_INC%\\apr.h exit 1
-      #       - if not exist %LIBRARY_BIN%\\libapr-1.dll exit 1
-      #       - if not exist %LIBRARY_LIB%\\libapr-1.lib exit 1
 
   - package:
       name: libapriconv
@@ -95,17 +89,9 @@ outputs:
     tests:
       - package_contents:
           include:
-            - apr-1/apr_iconv.h
+            - "**/apr_iconv.h"
           lib:
             - apriconv-1
-
-      # - if: win
-      #   then:
-      #     script:
-      #       - if not exist %LIBRARY_INC%\\apr_iconv.h exit 1
-      #       - if not exist %LIBRARY_BIN%\\libapriconv-1.dll exit 1
-      #       - if not exist %LIBRARY_LIB%\\libapriconv-1.lib exit 1
-      #       - if not exist %LIBRARY_BIN%\\iconv\\utf-8.so exit 1
 
   - package:
       name: libaprutil
@@ -144,7 +130,7 @@ outputs:
     tests:
       - package_contents:
           include:
-            - apr-1/apu.h
+            - "**/apu.h"
           lib:
             - aprutil-1
 
