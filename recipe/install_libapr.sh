@@ -24,3 +24,10 @@ autoreconf -vfi
 
 make
 make install
+
+# The installed libtool ($PREFIX/build-1/libtool) contains hardcoded absolute paths
+# to the compiler in $BUILD_PREFIX (e.g. .../build_env/bin/x86_64-conda-linux-gnu-cc).
+# That absolute path won't exist for downstream packages or end users. Strip the
+# directory so libtool uses just the compiler name, which will be found on $PATH.
+sed -i.bak "s|${BUILD_PREFIX}/bin/||g" "${PREFIX}/build-1/libtool"
+rm -f "${PREFIX}/build-1/libtool.bak"
