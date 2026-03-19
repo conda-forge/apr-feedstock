@@ -18,11 +18,6 @@ outputs:
     source:
       url: ${{ mirror }}/apr/apr-${{ apr_ver }}.tar.gz
       sha256: 6a10e7f7430510600af25fabf466e1df61aaae910bf1dc5d10c44a4433ccc81d
-      patches:
-        - patches/osx-libapr-darwin20-hints.patch
-        - if: osx and build_platform != target_platform
-          then:
-            - patches/cross-compile-osx-arm64-strerror.patch
     build:
       script:
         - if: unix
@@ -37,9 +32,6 @@ outputs:
           then:
             - make
             - libtool
-            - autoconf
-            - automake
-            - gettext
         - if: win
           then:
             - cmake
