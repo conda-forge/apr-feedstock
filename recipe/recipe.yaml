@@ -36,6 +36,10 @@ outputs:
           then:
             - cmake
             - ninja
+      host:
+        - if: linux
+          then:
+            - libxcrypt
       run_exports:
         # https://abi-laboratory.pro/tracker/timeline/apr/
         # This is only on the basis of libapr.so
