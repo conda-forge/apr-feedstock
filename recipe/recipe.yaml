@@ -64,7 +64,7 @@ outputs:
         sha256: ce94c7722ede927ce1e5a368675ace17d96d60ff9b8918df216ee5c1298c6a5e
       - if: win
         then:
-          - path: cmake/
+          - path: cmake/apr-iconv
     build:
       # apr-iconv version unchanged, keep incrementing build number
       number: 7

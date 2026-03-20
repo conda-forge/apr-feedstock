@@ -1,6 +1,3 @@
-copy %SRC_DIR%\cmake\apr-iconv\CMakeLists.txt %SRC_DIR%\CMakeLists.txt
-if errorlevel 1 exit 1
-
 cmake -GNinja ^
     -S%SRC_DIR% ^
     -B%SRC_DIR%\build ^
