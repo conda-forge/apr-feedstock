@@ -46,7 +46,7 @@ outputs:
           include:
             - "**/apr.h"
           lib:
-            - apr-1
+            - libapr-1
       - if: unix
         then:
           script:
