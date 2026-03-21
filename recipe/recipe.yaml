@@ -19,11 +19,7 @@ outputs:
       url: ${{ mirror }}/apr/apr-${{ apr_ver }}.tar.gz
       sha256: 6a10e7f7430510600af25fabf466e1df61aaae910bf1dc5d10c44a4433ccc81d
     build:
-      script:
-        - if: unix
-          then: install_libapr.sh
-        - if: win
-          then: install_libapr.bat
+      script: install_libapr
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -68,11 +64,7 @@ outputs:
     build:
       # apr-iconv version unchanged, keep incrementing build number
       number: 7
-      script:
-        - if: unix
-          then: install_libapriconv.sh
-        - if: win
-          then: install_libapriconv.bat
+      script: install_libapriconv
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -95,7 +87,7 @@ outputs:
           include:
             - "**/apr_iconv.h"
           lib:
-            - apriconv-1
+            - libapriconv-1
 
   - package:
       name: libaprutil
@@ -104,11 +96,7 @@ outputs:
       url: ${{ mirror }}/apr/apr-util-${{ apu_ver }}.tar.gz
       sha256: 2b74d8932703826862ca305b094eef2983c27b39d5c9414442e9976a9acf1983
     build:
-      script:
-        - if: unix
-          then: install_libaprutil.sh
-        - if: win
-          then: install_libaprutil.bat
+      script: install_libaprutil
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -136,18 +124,12 @@ outputs:
           include:
             - "**/apu.h"
           lib:
-            - aprutil-1
+            - libaprutil-1
 
       - if: unix
         then:
           script:
             - apu-1-config --help
-      - if: win
-        then:
-          script:
-            - if not exist %LIBRARY_INC%\\apu.h exit 1
-            - if not exist %LIBRARY_BIN%\\libaprutil-1.dll exit 1
-            - if not exist %LIBRARY_LIB%\\libaprutil-1.lib exit 1
 
   - package:
       name: apr
