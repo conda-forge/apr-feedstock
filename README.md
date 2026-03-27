@@ -3,33 +3,80 @@ About apr-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/apr-feedstock/blob/main/LICENSE.txt)
 
+
+About apr
+---------
+
 Home: http://apr.apache.org/
 
 Package license: Apache-2.0
 
 Summary: Maintains a consistent API with predictable behaviour
 
-Development: https://svn.apache.org/viewvc/apr
+Development: https://github.com/apache/apr
 
 Documentation: https://apr.apache.org/docs/apr/1.6/index.html
 
 Apache Portable Run-time libraries have been designed to provide a common
-interface to low level routines across any platform.The original goal of APR
+interface to low level routines across any platform. The original goal of APR
 was to combine all code in Apache to one common code base.
 
+About libapr
+------------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
+
+About libapriconv
+-----------------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
+
+About libaprutil
+----------------
+
+Home: http://apr.apache.org/
+
+Package license: Apache-2.0
+
+Summary: Maintains a consistent API with predictable behaviour
+
+Development: https://github.com/apache/apr
+
+Documentation: https://apr.apache.org/docs/apr/1.6/index.html
+
+Apache Portable Run-time libraries have been designed to provide a common
+interface to low level routines across any platform. The original goal of APR
+was to combine all code in Apache to one common code base.
 
 Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/apr-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/apr-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -54,13 +101,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6273&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/apr-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6273&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/apr-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -171,12 +211,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -203,7 +243,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/apr-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -216,8 +256,10 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@erykoff](https://github.com/erykoff/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@mingwandroid](https://github.com/mingwandroid/)
+* [@mwittgen](https://github.com/mwittgen/)
 * [@nehaljwani](https://github.com/nehaljwani/)
 * [@seanyen](https://github.com/seanyen/)
 
